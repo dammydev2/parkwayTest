@@ -46,4 +46,14 @@ class CartController extends Controller
         $clearedCart = $this->cartService->clearCart();
         return redirect()->route('cart.index')->with('success_msg', 'Cart is cleared!');
     }
+
+    public function check_coupon(Request $request)
+    {
+        $couponDiscount = $this->cartService->confirmCoupon($request->all());
+        if(!$couponDiscount){
+            return response()->json(['error'=> 'coupon mismatched']);   
+        }
+        return response()->json(['couponDiscount'=>$couponDiscount]);
+        // return redirect()->route('cart.index')->with('couponDiscount', $couponDiscount);
+    }
 }
