@@ -10,7 +10,7 @@ run `php artisan db:seed`
 
 use the following coupon codes to check
 
-**FIXED10**
-**PERCENT10**
-**MIXED10**
-**REJECTED10**
+* **FIXED10**
+* **PERCENT10**
+* **MIXED10**
+* **REJECTED10**
