@@ -33,23 +33,17 @@ class CartController extends Controller
     }
 
     public function remove(Request $request){
-        \Cart::remove($request->id);
+        $cartRemove = $this->cartService->removeFromCart($request);
         return redirect()->route('cart.index')->with('success_msg', 'Item is removed!');
     }
 
     public function update(Request $request){
-        \Cart::update($request->id,
-            array(
-                'quantity' => array(
-                    'relative' => false,
-                    'value' => $request->quantity
-                ),
-        ));
+        $updatedCart = $this->cartService->updateCart($request);
         return redirect()->route('cart.index')->with('success_msg', 'Cart is Updated!');
     }
 
     public function clear(){
-        \Cart::clear();
+        $clearedCart = $this->cartService->clearCart();
         return redirect()->route('cart.index')->with('success_msg', 'Cart is cleared!');
     }
 }

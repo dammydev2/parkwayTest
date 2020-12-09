@@ -22,7 +22,7 @@ class CartService
 
     public function addToCart($request)
     {
-        \Cart::add(array(
+        return \Cart::add(array(
             'id' => $request->id,
             'name' => $request->name,
             'price' => $request->price,
@@ -32,5 +32,26 @@ class CartService
                 'slug' => $request->slug
             )
         ));
+    }
+
+    public function removeFromCart($request)
+    {
+        return \Cart::remove($request->id);
+    }
+
+    public function updateCart()
+    {
+        return \Cart::update($request->id,
+            array(
+                'quantity' => array(
+                    'relative' => false,
+                    'value' => $request->quantity
+                ),
+        ));
+    }
+
+    public function clearCart()
+    {
+        \Cart::clear();
     }
 }
